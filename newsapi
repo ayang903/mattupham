@@ -1,0 +1,74 @@
+import pandas as pd
+import datetime
+
+import http.client
+# import requests
+
+import json
+def newsAPIRequest(query:str) -> dict:
+
+        """
+        Makes an api request to newsapi.org.
+        Requires:
+          query: str - the topic to search
+        Returns:
+          res: dict - a dictionary containing the response
+        """
+  query = query.replace(' ', '%20')
+  fromDate = datetime.datetime.today() - datetime.timedelta(days=7)
+  fromDate = fromDate.strftime('%Y-%m-%d')
+
+  conn = http.client.HTTPSConnection("newsapi.org")
+
+  payload = ''
+
+  newsapi_apikey = '0db7ab8d26b34533b00be11af29b8c73'
+
+  headers = {
+    'Authorization': newsapi_apikey,
+    'User-Agent': 'Andys News Agent'
+  }
+
+  conn.request("GET", "/v2/everything?q=" + query +
+               "&searchIn=title,description&from=" + fromDate +
+               "&sortby=relevancy", payload, headers)
+
+  res = conn.getresponse()
+  data = res.read()
+  res = json.loads(data.decode("utf-8"))
+  return res
+  res = newsAPIRequest('artificial intelligence')
+  res['articles'][0]
+  import pprint
+  pp = pprint.PrettyPrinter(indent=4)
+  pp.pprint(res)
+  def cleanNewsAPIRes(data:dict, query:str) -> list:
+                """
+                Cleans the API response dictionary into a list of dictionaries, with each
+                dictionary holding the info for one article. Any articles that do not have the
+                query in the description or title are dropped.
+                Requires:
+                  data: dict - a dictionary of the api response
+                  query: str - the query of the search
+                Returns:
+                  output: list - a list of dictionaries, each an article
+                """
+
+  output = []
+
+  for art in data['articles']:
+    if (query in art['description']) or (query in art['title']):
+      temp = {
+      'source': art['source']['name'],
+      'title': art['title'],
+      'url': art['url'],
+      'description': art['description'],
+      'content': art['content']
+      }
+      output.append(temp)
+    #
+  #
+
+  return output
+cleaned = cleanNewsAPIRes(res, 'artificial intelligence')
+cleaned
