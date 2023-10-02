@@ -1,19 +1,10 @@
 import pandas as pd
 import datetime
-
-import http.client
-# import requests
-
+import http.client #import requests
 import json
-def newsAPIRequest(query:str) -> dict:
+import pprint
 
-        """
-        Makes an api request to newsapi.org.
-        Requires:
-          query: str - the topic to search
-        Returns:
-          res: dict - a dictionary containing the response
-        """
+def newsAPIRequest(query:str) -> dict:                                                            
   query = query.replace(' ', '%20')
   fromDate = datetime.datetime.today() - datetime.timedelta(days=7)
   fromDate = fromDate.strftime('%Y-%m-%d')
@@ -37,22 +28,14 @@ def newsAPIRequest(query:str) -> dict:
   data = res.read()
   res = json.loads(data.decode("utf-8"))
   return res
-  res = newsAPIRequest('artificial intelligence')
-  res['articles'][0]
-  import pprint
-  pp = pprint.PrettyPrinter(indent=4)
-  pp.pprint(res)
-  def cleanNewsAPIRes(data:dict, query:str) -> list:
-                """
-                Cleans the API response dictionary into a list of dictionaries, with each
-                dictionary holding the info for one article. Any articles that do not have the
-                query in the description or title are dropped.
-                Requires:
-                  data: dict - a dictionary of the api response
-                  query: str - the query of the search
-                Returns:
-                  output: list - a list of dictionaries, each an article
-                """
+
+res = newsAPIRequest('artificial intelligence')
+res['articles'][0]
+
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(res)
+
+def cleanNewsAPIRes(data:dict, query:str) -> list:
 
   output = []
 
@@ -66,9 +49,8 @@ def newsAPIRequest(query:str) -> dict:
       'content': art['content']
       }
       output.append(temp)
-    #
-  #
 
   return output
+
 cleaned = cleanNewsAPIRes(res, 'artificial intelligence')
-cleaned
+pp.pprint(cleaned)
