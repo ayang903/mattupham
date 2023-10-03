@@ -1,0 +1,34 @@
+{"articles":
+[
+    {
+        "Title": "NSA launches AI security center amid growing cyber threats",
+        "url": "https://readwrite.com/nsa-launches-ai-security-center-amid-growing-cyber-threats/",
+        "raw_text": "As artificial intelligence weaves itself deeper into the fabric of national defense, the U.S. National Security Agency has unveiled a dedicated AI security hub. The NSA’s outgoing director, General P… [+1828 chars]"
+    },
+    {
+        "Title": "FedEx Robot Solves Complex Packing Problems",
+        "url": "https://hackaday.com/2023/09/29/fedex-robot-solves-complex-packing-problems/",
+        "raw_text": "Despite the fact that it constantly seems like we’re in the midst of a robotics- and artificial intelligence-driven revolution, there are a number of tasks that continue to elude even the best machin… [+1437 chars]"
+    },
+    {
+        "Title": "Decentralized Artificial Intelligence",
+        "url": "https://www.chaos-engineering.dev/p/decentralized-artificial-intelligence",
+        "raw_text": "On Decentralized Cryptographically Secure Neural Agents"
+    },
+    {
+        "Title": "Google AI: How One Tech Giant Approaches Artificial Intelligence",
+        "url": "https://blog.hubspot.com/marketing/a-look-back-at-googles-biggest-artificial-intelligence-projects#article",
+        "raw_text": "Have you ever sat paralyzed, trying to craft the perfect text message? Well, one experiment from Google AI may provide the perfect solution. The team’s AI-powered Magic Compose provides multiple sample texts, so you just have to choose the right one. You can …"
+    },
+    {
+        "Title": "'The Creator' Review: It's AI That Wants to Save Humanity",
+        "url": "https://www.wired.com/story/the-creator-gareth-edwards-review/",
+        "raw_text": "Gareth Edwards’ new sci-fi film invites audiences to cheer for artificial intelligence that affirms the value of human life."
+    },
+    {
+        "Title": "The NSA has a new security center specifically for guarding against AI",
+        "url": "https://www.engadget.com/the-nsa-has-a-new-security-center-specifically-for-guarding-against-ai-180354146.html",
+        "raw_text": "The National Security Agency (NSA) is starting a dedicated artificial intelligence security center, as reported by AP. This move comes after the government has begun to increasingly rely on AI, integrating multiple algorithms into defense and intelligence…"
+    }
+]
+}
