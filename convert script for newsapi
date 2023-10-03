@@ -1,0 +1,23 @@
+def convert_to_format(article_info):
+    article = {
+        "Title": article_info['title'],
+        "url": article_info['url'],
+        "raw_text": article_info['description']
+    }
+    formatted_article = {"articles": [article]}
+    return formatted_article
+
+# Example article information
+article_info = {
+    'source': {'id': 'engadget', 'name': 'Engadget'},
+    'author': 'Lawrence Bonk',
+    'title': 'The NSA has a new security center specifically for guarding against AI',
+    'description': 'The National Security Agency (NSA) is starting a dedicated artificial intelligence security center, as reported by AP. This move comes after the government has begun to increasingly rely on AI, integrating multiple algorithms into defense and intelligence…',
+    'url': 'https://www.engadget.com/the-nsa-has-a-new-security-center-specifically-for-guarding-against-ai-180354146.html',
+    'urlToImage': 'https://s.yimg.com/ny/api/res/1.2/NuZsryq.aoKGrETDYkSA2Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03ODc-/https-s.yimg.com/os/creatr-uploaded-images/2023-09/f6160650-5eee-11ee-beb5-55f3ee92a9d3',
+    'publishedAt': '2023-09-29T18:03:54Z',
+    'content': 'The National Security Agency (NSA) is starting a dedicated artificial intelligence security center, as reported by AP. This move comes after the government has begun to increasingly rely on AI, i… [+2419 chars]'
+}
+
+formatted_article = convert_to_format(article_info)
+print(formatted_article)
