@@ -1,0 +1,79 @@
+import pandas as pd
+import datetime
+import http.client
+import json
+import pprint
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
+
+
+
+def newsAPIRequest(query:str) -> dict:
+    query = query.replace(' ', '%20')
+    fromDate = datetime.datetime.today() - datetime.timedelta(days=7)
+    fromDate = fromDate.strftime('%Y-%m-%d')
+
+    conn = http.client.HTTPSConnection("newsapi.org")
+
+    payload = ''
+
+    newsapi_apikey = '0db7ab8d26b34533b00be11af29b8c73'
+
+    headers = {
+        'Authorization': newsapi_apikey,
+        'User-Agent': 'Andys News Agent'
+    }
+
+    conn.request("GET", "/v2/everything?q=" + query +
+                 "&searchIn=title,description&from=" + fromDate +
+                 "&sortby=relevancy", payload, headers)
+
+    res = conn.getresponse()
+    data = res.read()
+    res = json.loads(data.decode("utf-8"))
+    return res
+
+def cleanNewsAPIRes(data:dict, query:str) -> list:
+    output = []
+
+    for art in data['articles']:
+        if (query in art['description']) or (query in art['title']):
+            temp = {
+                'source': art['source']['name'],
+                'title': art['title'],
+                'url': art['url'],
+                'description': art['description'],
+                'content': art['content']
+            }
+            output.append(temp)
+
+    return output
+
+# request, will need to replace res2 and 3 with youtube and reddit later
+res1 = newsAPIRequest('artificial intelligence')
+res2 = newsAPIRequest('machine learning')
+res3 = newsAPIRequest('data science')
+
+# cleaning
+cleaned1 = cleanNewsAPIRes(res1, 'artificial intelligence')
+cleaned2 = cleanNewsAPIRes(res2, 'machine learning')
+cleaned3 = cleanNewsAPIRes(res3, 'data science')
+
+# create integrated jason data
+integrated_data = {"articles": []}
+integrated_data["articles"].extend(cleaned1)
+integrated_data["articles"].extend(cleaned2)
+integrated_data["articles"].extend(cleaned3)
+
+pp = pprint.PrettyPrinter(indent=4)
+encoded_data = json.dumps(integrated_data, ensure_ascii=False).encode('utf-8')
+pp.pprint(encoded_data.decode('utf-8'))
+
+# save the combined data into a big json file
+with open("integrated_news.json", "w") as outfile:
+    json.dump(integrated_data, outfile, indent=4)
+
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(integrated_data)
+
