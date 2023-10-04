@@ -26,7 +26,7 @@ os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
 query = "Summarize this text for me in 5 sentences then put everything in json format with it being called 'redditsummary' "
 
 #loads a txt file where you can input data and the response will be based on the data
-loader = TextLoader('mattupham/summarizer.txt')
+loader = TextLoader('mattupham/summarizedText.txt')
 
 #this can be used to load a directory of txt (used for multiple txt files)
 #loader = DirectoryLoader(".", glob="*.txt")

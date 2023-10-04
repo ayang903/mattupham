@@ -1,5 +1,6 @@
 import praw
 import pandas as pd
+import os
 
 # import necessary libraries
 from bs4 import BeautifulSoup
@@ -7,10 +8,17 @@ from urllib.request import urlopen
 import requests
 import re
 
-ammountOfPosts = 1
+#dot env for not leaking the openai API key
+from dotenv import load_dotenv
+load_dotenv()
+
+#used for setting the openai api key to the model
+clientSecretKey = os.getenv("CLIENT_SECRET_KEY")
+
+ammountOfPosts = 3
  
 reddit_read_only = praw.Reddit(client_id="RqbArZ6NcN2TVKR6MaPY1w",         # your client id
-                               client_secret="a5qe8fn_CEOew2ryjaqfdWmYmR3Kvg",      # your client secret
+                               client_secret=clientSecretKey,      # your client secret
                                user_agent="Scaper")        # your user agent
  
 #news, technews, 
