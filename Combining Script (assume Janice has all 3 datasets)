@@ -68,12 +68,14 @@ integrated_data["articles"].extend(cleaned3)
 
 pp = pprint.PrettyPrinter(indent=4)
 encoded_data = json.dumps(integrated_data, ensure_ascii=False).encode('utf-8')
-pp.pprint(encoded_data.decode('utf-8'))
+#pp.pprint(encoded_data.decode('utf-8'))
 
 # save the combined data into a big json file
 with open("integrated_news.json", "w") as outfile:
     json.dump(integrated_data, outfile, indent=4)
 
+
 pp = pprint.PrettyPrinter(indent=4)
 pp.pprint(integrated_data)
+
 
