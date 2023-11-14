@@ -14,7 +14,7 @@ from urllib.parse import quote
 load_dotenv()
 
 def get_reddit_data(num_posts):
-    clientSecretKey = os.environ["CLIENT_SECRET_KEY"]
+    clientSecretKey = 'u8gnI-3_I70MZ0H52Wg-RYAytkWWeQ'
     reddit = praw.Reddit(client_id="kMolVsEMMe0041y37FnL_Q",
                          client_secret=clientSecretKey,
                          user_agent="Scraper")
@@ -106,9 +106,7 @@ def scrape(num_reddit_posts, num_news_articles, num_youtube_videos):
         'youtube': youtube_data
     }
 
-    now = datetime.datetime.now()
-    timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
-    filename = f'data/all_data_{timestamp}.json'
+    filename = f'data/raw.json'
 
     with open(filename, 'w', encoding='utf-8') as f:
         json_string = json.dumps(all_data, ensure_ascii=False, indent=4)

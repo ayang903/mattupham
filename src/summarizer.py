@@ -5,11 +5,9 @@ import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 
-# Initialize OpenAI API key
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
-
-def summarize(filename):
+def summarize(filename, gpt_key, model_name):
+  openai.api_key = gpt_key
 
   # Opening created all data json file
   f = open(filename)
@@ -27,7 +25,7 @@ def summarize(filename):
       try:
         # GPT-3.5 API for summarization
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model=model_name,
             messages=[{
                 "role": "system",
                 "content": "You are a helpful assistant."
@@ -43,7 +41,7 @@ def summarize(filename):
 
         # GPT-3.5 API for talking points from summarization generated
         follow_up = openai.ChatCompletion.create(
-          model="gpt-4",
+          model=model_name,
           messages=[{
             "role": "system",
                 "content": "You are a helpful assistant."
